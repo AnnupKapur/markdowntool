@@ -3,6 +3,7 @@ import { useState } from 'react';
 import './styles/App.css';
 import Output from './components/Output'
 import Input from './components/Input';
+import { Prism } from 'prism-react-renderer';
 
 function App() {
 
@@ -34,6 +35,14 @@ function App() {
 
   // inner HTML function
   const inHTML = () => {return {__html:marked(markdown.text)};}
+
+  //Adding carridge return new line
+  marked.setOptions({
+    breaks: true,
+    highlight: function (code) {
+      return Prism.highlight(code, Prism.languages.javascript, 'javascript');
+    }
+  });
 
   return (
     <div className="App">
@@ -74,7 +83,7 @@ Or _italic_.
 Or... wait for it... **_both!_**
 And feel free to go crazy ~~crossing stuff out~~.
 
-There's also [links](https://www.freecodecamp.org), and
+There's also [links](https://www.AnnupKapur.com), and
 > Block Quotes!
 
 And if you want to get really crazy, even tables:
@@ -94,5 +103,7 @@ And here. | Okay. | I think we get it.
 1. Use just 1s if you want!
 1. And last but not least, let's not forget embedded images:
 
-![freeCodeCamp Logo](https://cdn.freecodecamp.org/testable-projects-fcc/images/fcc_secondary.svg)
+![Obligatory Cat Picture](https://jngnposwzs-flywheel.netdna-ssl.com/wp-content/uploads/2019/05/Transparent-OrangeWhiteCat-764x1024.png)
+
+_Obligatory Cat Photo_
 `;

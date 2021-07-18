@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+:root{
+  --mainCol:hsla(243, 20%, 30%, 1);
+  --darkCol:hsla(243, 38%, 14%, 1);
+
+  --codeBG: hsla(243, 12%, 37%, 1);
+}
+
 .App {
   text-align: center;
   margin:0px;
@@ -14,6 +21,10 @@
   align-items: center;
   font-family: Raleway;
   font-size: 1rem;
+
+  background-color: var(--mainCol);
+  color: white;
+  padding:0 0 5em 0;
 }
 
 #header{
@@ -47,6 +58,12 @@
 
 #preview{
   width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  color: black;
+  background-color: white;
 }
 
 #editor{
@@ -54,25 +71,40 @@
   height: 50em;
   border: none;
   padding:1em;
+  font-size: 1em;
+  max-height: 70vh;
+  background-color: hsla(243, 20%, 61%, 1);
+  transition:200ms ease-out;
+}
+
+#editor:focus, #editor:active, #editor:hover{
+  background-color: white;
 }
 
 .sku-contain{
   height: auto;
   width: calc(50vw - 2em);
   border: 2px black solid;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 img{
-  width: 100%;
+  width: 50%;
 }
 
 #toolbar{
   width: 100%;
-  background-color: blue;
+  background-color: var(--darkCol);
   font-size: 1em;
   display: grid;
   margin: 0;
   grid-template-columns: 50% 50%;
+
+  padding: 1em 0;
+  height: 2.5em;
 }
 
 #toolbar h2{
@@ -84,6 +116,8 @@ img{
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
+
+  padding-left:1em;
 }
 
 #buttons{
@@ -91,15 +125,29 @@ img{
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
+
+  gap: 1em;
+
+  padding-right: 1em;
 }
 
 #toolbar button{
   height: 3em;
+  margin: 0;
+  padding: 0.2em 1em;
+  background: none;
+  color: white;
+  border: 2px white solid;
+  font-size: 0.8em;
+  font-weight: 700;
 }
 
+#toolbar button:hover{
+  background-color: white;
+  color:var(--darkCol);
+}
 
-
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1000px) {
   #main{
     display: flex;
     flex-direction: column;
@@ -114,4 +162,80 @@ img{
     height: auto;
     width: 100vw;
   }
+}
+
+/* MARKDOWN STYLING */
+
+#preview{
+  color: var(--mainCol);
+  font-family: Raleway;
+  text-align: left;
+  position: relative;
+  overflow: auto;
+  word-wrap: break-word;
+}
+
+#preview:only-child{
+  padding-left: 2em;
+}
+
+#preview p code{
+  display: inline-block;
+  background-color: var(--codeBG);
+  color: white;
+  padding:0.2em 0.3em;
+}
+
+#preview pre code{
+  display: block;
+  background-color: var(--codeBG);
+  color: white;
+  padding:1em 1em;
+  text-align: left;
+  position: relative;
+  margin:0 0 0 2em;
+}
+
+#preview blockquote{
+  font-size: 1.5em;
+  color:grey;
+  font-style: italic;
+  font-weight: 600;
+  position: relative;
+  padding: 0;
+  margin:0 0 0 2em;
+}
+
+#preview blockquote::before{
+  content:'\201C';
+  position: absolute;
+  font-size: 2em;
+  left:-0.6em;
+}
+
+#preview blockquote::after{
+  content:'\201D';
+  position: absolute;
+  font-size: 2em;
+  right:-0.5em;
+  bottom:-0.5em;
+}
+
+#preview table{
+  border-collapse: collapse;
+}
+
+#preview table th, td{
+  margin:0 0 0 2em;
+  border:2px var(--darkCol) solid;
+  padding: 0.8em 1.2em;
+}
+
+#preview table th{
+  background-color: var(--codeBG);
+  color: white;
+}
+
+#preview li{
+  padding:0.5em 0;
 }
