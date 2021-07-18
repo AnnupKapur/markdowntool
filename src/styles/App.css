@@ -175,10 +175,6 @@ img{
   word-wrap: break-word;
 }
 
-#preview:only-child{
-  padding-left: 2em;
-}
-
 #preview p code{
   display: inline-block;
   background-color: var(--codeBG);
